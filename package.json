@@ -1,0 +1,27 @@
+{
+  "name": "my-team-profile-generator",
+  "version": "1.0.0",
+  "description": "Node.js command-line application",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Irina-Golubitsky/My-Team-Profile-Generator.git"
+  },
+  "keywords": [
+    "node",
+    "team",
+    "generator"
+  ],
+  "author": "Irina Golubitsky",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Irina-Golubitsky/My-Team-Profile-Generator/issues"
+  },
+  "homepage": "https://github.com/Irina-Golubitsky/My-Team-Profile-Generator#readme"
+}
