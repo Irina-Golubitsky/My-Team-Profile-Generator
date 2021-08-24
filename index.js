@@ -1,10 +1,11 @@
 // Constants
 const inquirer = require("inquirer");
-//const fs = require("fs");
 const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/Intern");
-let myTeam = [];
+const buildPage = require("./src/template.js");
+let myTeam= [];
+// set of prompts for each employee extension class
 function getPrompts(role){
     let promptsArray=[
         {
@@ -98,7 +99,7 @@ function getPrompts(role){
         return promptsArray;
       }
       
-
+// add Manager to myTeam array, callback new team member
 function newManager(){
   let prompts= getPrompts('Manager');
   inquirer.prompt(prompts)
@@ -108,6 +109,7 @@ function newManager(){
     addTeamMember();
   })
 }
+// ask user to add new team member or build html
 function addTeamMember(){
   inquirer.prompt([{
     type: "list",
@@ -124,11 +126,13 @@ function addTeamMember(){
             addIntern();
             break;
         case "No, finish building my team":
-            buildTeam();
+       // build HTML page
+          buildPage(myTeam);
             break;
     }
 });  
 }
+// add new Engineer to myTeam array, callback - add new team member or build HTML
 function addEngineer(){
   let prompts= getPrompts('Engineer');
   inquirer.prompt(prompts)
@@ -138,6 +142,7 @@ function addEngineer(){
     addTeamMember();
   })
 }
+// add new Intern to myTeam array, callback - add new team member or build HTML
 function addIntern(){
   let prompts= getPrompts('Intern');
   inquirer.prompt(prompts)
@@ -147,15 +152,12 @@ function addIntern(){
     addTeamMember();
   })
 }
-function buildTeam(){
-  
-}
-
+// start building my team: input team name, then callback - add manager
 const myApp = () => {
      inquirer.prompt([
       {
         type: 'input',
-        name: 'teamTame',
+        name: 'teamName',
         message: 'What is your team name? (Required)',
         validate: teamTame => {
           if (teamTame) {
@@ -168,8 +170,10 @@ const myApp = () => {
       },
     ])
     .then(data => {
+      // add team name to team array
       myTeam.push(data.teamName);
       newManager();
   });
 };
+// Function call to initialize app
 myApp();

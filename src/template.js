@@ -1,20 +1,11 @@
+// Constants
 const fs = require("fs");
 const Manager = require("../lib/manager");
 const Engineer = require("../lib/engineer");
 const Intern = require("../lib/Intern");
-// let myTeam = ['Developers']
-// let manager = new Manager('Vova', 123, 'vova@feu.ru', 34);
-// myTeam.push(manager);
-// let manager2 = new Engineer('Vasya', 2334, 'vasia@feu.ru', 'vasya-hub');
-// myTeam.push(manager2);
-// let manager3 = new Engineer('petya', 221, 'petya@feu.ru', 'petya-hub');
-// myTeam.push(manager3);
-// let manager4 = new Intern('Jora', 114, 'jora@feu.ru', 'UCLA');
-// myTeam.push(manager4);
-// let manager5 = new Intern('Kolya', 568, 'Kolya@feu.ru', 'Ucs');
-// myTeam.push(manager5);
-
-function buildPage() {
+// create html file, write it to dist folder
+function buildPage(myTeam) {
+    console.log(myTeam);
     let teamPage = `
 <!DOCTYPE html>
 <html lang="en">
@@ -35,8 +26,8 @@ function buildPage() {
     <!-- team cards -->
     <div class="flex items-center justify-center p-5">
     <div i class="grid m-2 gap-4 mx-auto w-10/12  sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 grid-flow-row">`;
-
-    for (i = 1; i <myTeam.length; i++) {
+    // card for each team member
+    for (i = 1; i < myTeam.length; i++) {
         teamPage += `<div class="bg-gray-100 text-l shadow-lg"><div class="font-bold  bg-blue-600 p-4 pb-0 text-white">${myTeam[i].name}</div>`;
         if (myTeam[i].getRole() === 'Manager') {
             teamPage += `<div class="flex items-center font-bold  p-4 bg-blue-600 text-white"><svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -53,12 +44,12 @@ function buildPage() {
         }
         teamPage += `<div class=" p-4 pb-2 mb-2">ID: ${myTeam[i].id} </div>
                 <div class="p-4 pt-1 ">Email: <a class="text-blue-600 hover:underline" href="mailto:${myTeam[i].email}">${myTeam[i].email}</a></div>`;
-    if (myTeam[i].getRole() === 'Manager') {
-        teamPage += `<div class="p-4 pt-1 tmb-2">Office number: ${myTeam[i].officeNumber} </div></div>`;
+        if (myTeam[i].getRole() === 'Manager') {
+            teamPage += `<div class="p-4 pt-1 tmb-2">Office number: ${myTeam[i].officeNumber} </div></div>`;
+        }
+        else if (myTeam[i].getRole() === 'Engineer') { teamPage += `<div class=" p-4 pt-1 mb-2">GitHub: <a class="text-blue-600 hover:underline" href="https://github.com/${myTeam[i].github}" target="_blank">${myTeam[i].github}</a></div></div>`; }
+        else { teamPage += `<div class="p-4 pt-1 mb-2">School: ${myTeam[i].school} </div></div>`; }
     }
-    else if (myTeam[i].getRole() === 'Engineer') { teamPage += `<div class=" p-4 pt-1 mb-2">GitHub: <a class="text-blue-600 hover:underline" href="https://github.com/${myTeam[i].github}" target="_blank">${myTeam[i].github}</a></div></div>`; }
-    else { teamPage += `<div class="p-4 pt-1 mb-2">School: ${myTeam[i].school} </div></div>`; }
-}
     teamPage += `</div></div>
     
      <!-- scripts -->
@@ -67,13 +58,15 @@ function buildPage() {
 </body>
 
 </html>`;
-    fs.writeFile(`../dist/${myTeam[0]}.html`, teamPage, function (err) {
+    // write html file to dist folder
+    fs.writeFile(`./dist/${myTeam[0]}.html`, teamPage, function (err) {
         if (err) {
             console.log(err);
             return;
-          }else{
-          console.log(`File ${myTeam[0]}.html created in dist folder!`);}
-          }
-     );
+        } else {
+            console.log(`File ${myTeam[0]}.html created in dist folder!`);
         }
-buildPage();
+    }
+    );
+}
+module.exports = buildPage;
