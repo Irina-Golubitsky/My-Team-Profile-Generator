@@ -16,7 +16,7 @@ A Node.js command-line application that takes in information about employees on 
 - [License](#license)
 - [Demo](#demo)
 - [Screenshot](#screenshot)
-- [Questoins](#quedestions)
+- [Questoins](#questions)
   
 ## Installation 
    ``` 
