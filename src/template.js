@@ -5,7 +5,6 @@ const Engineer = require("../lib/engineer");
 const Intern = require("../lib/Intern");
 // create html file, write it to dist folder
 function buildPage(myTeam) {
-    console.log(myTeam);
     let teamPage = `
 <!DOCTYPE html>
 <html lang="en">
