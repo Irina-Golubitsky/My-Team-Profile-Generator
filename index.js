@@ -23,7 +23,7 @@ function getPrompts(role){
         {
           type: 'input',
           name: 'id',
-          message: 'Enter '+ role + "'s id. (Number)",
+          message: 'Enter '+ role + "'s id.",
           validate: name => {
             if (name) {
               return true;
@@ -124,7 +124,7 @@ function addTeamMember(){
             addIntern();
             break;
         case "No, finish building my team":
-            buildMyTeam();
+            buildTeam();
             break;
     }
 });  
@@ -146,6 +146,9 @@ function addIntern(){
     myTeam.push(intern);
     addTeamMember();
   })
+}
+function buildTeam(){
+  
 }
 
 const myApp = () => {
